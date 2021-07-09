@@ -1,0 +1,21 @@
+{
+  "name": "odev-4-efe-tekce",
+  "version": "1.0.0",
+  "description": "## Özet Açıklama",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/94-Istanbul-Front-End-Bootcamp/odev-4-efe-tekce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/94-Istanbul-Front-End-Bootcamp/odev-4-efe-tekce/issues"
+  },
+  "homepage": "https://github.com/94-Istanbul-Front-End-Bootcamp/odev-4-efe-tekce#readme"
+}
