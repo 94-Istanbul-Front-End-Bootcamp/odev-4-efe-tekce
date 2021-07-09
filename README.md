@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Ödev 4
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Özet Açıklama
 
-## Available Scripts
+### React.js ile aşağıdaki gibi basit bir yorum sistemi yapmanız beklenmektedir.
 
-In the project directory, you can run:
+![alt text](/ux.gif)
 
-### `npm start`
+## Kaynaklar
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Yıldızlı oy componenti için [react-rating-stars-component](https://www.npmjs.com/package/react-rating-stars-component) package'ı kullanılacaktır.
+- React.js'de input kullanımı konusunu, bu hafta anlatabilmeyi umuyordum ama süremiz yetmedi. Geliştirme sırasında ihtiyaç duyulacak kaynakları fark edip araştırmak, bulmak ve kullanımını öğrenmek bu mesleğin sonu olmayan bir sürecidir. Önümüzdeki derslerde bu konudan elbette bahsedeceğiz ve form elementlerini kullanacağız. Yine de işleyemediğimiz bu konuyu, gelişiminize faydası olacağını düşündüğüm için ödeve dahil etmek istedim. React ile form input kullanımı için [buradan](https://tr.reactjs.org/docs/forms.html) faydalanabilirsiniz.
+- Object veya Array tipindeki field'ları state içerisinde tanımlamak ve güncellemek de yine detaylı bahsedemediğimiz ve zorlanabileceğinizi düşündüğüm bir konu olduğu için aşağıya örnek bir kod ekliyorum.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Örnek kod:
 
-### `npm test`
+```js
+state = {
+  comments: [],
+  commentValue: "",
+  vote: 0,
+};
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+handleComment = () => {
+  const newState = this.state;
 
-### `npm run build`
+  newState.comments.push({
+    text: this.state.commentValue,
+    vote: this.state.vote,
+  });
+  newState.commentValue = "";
+  newState.vote = 0;
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  this.setState({
+    ...newState,
+  });
+};
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Burada comment submit aksiyonunu görüyoruz. Tüm state yeni bir object değişkene atanıyor, bu değişken içerisinde istediğimiz değişikliği yapıyoruz ve son durumda bu değiştirilmiş object tüm state içerisine açılıyor. Bu kullanım sayesinde state'i sadece bir kez güncelleyerek re render sayısını azaltmış oluyoruz.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Kurallar
 
-### `npm run eject`
+- Başlangıçta hiç yorum yoktur ve bu durumda ekrana "Hiç yorum yok" çıktısı verilir.
+- Yıldız seviyesi 1-5 arasındadır ve başlangıçta oy durumunu tutan state numerik ve default değeri 0 olmalıdır.
+- Yeni bir yorum eklemeden önce yıldız verilmesi zorunludur. Aksi durumda "Yorum yapmadan önce oy vermelisiniz." gibi bir hata mesajı gösterilecektir.
+- Yorum alanı boş olamaz ve en az 3 karakter olmalıdır. Yorum inputu boş iken yorum yap butonu tıklanırsa "Boş olamaz" gibi bir hata mesajı gösterilmelidir. Yorum inputundaki karakter sayısı 3 karakterden az ise "Yorumunuz çok kısa" gibi bir hata mesajı verilmelidir.
+- İlgili validation'lar sağlandığında yorumları barındıran array tipindeki state içerisine, yeni yorum, object olarak eklenmelidir.
+- Yorumları listelemek için farklı bir component oluşturulmalıdır.
+- Yorum ekle kısmındaki rating component, submit button ve text input farklı bir component'in içerisinde olmalıdır.
+- State App.js component'inde oluşturulmalı ve güncellenmelidir. Yani tüm aksiyon App.js üzerinden yönetilmelidir. Haliyle diğer component'ler props ile beslenmelidir.
+- App.js component'i class tipinde, diğer component'ler function tipinde olmalıdır.
+- Style konusunda her zamanki gibi özgürsünüz fakat ödevlerin kontrolünü zorlaştırmamak adına, yukarıda belirttiğim "star rating" haricinde bir package'ı projenize eklememenizi rica ederim.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Örnek Dosya Yapısı
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    .
+    ├── ...
+    ├── src
+    │   ├── components                      # Other Components
+    │   │   ├── addComment
+    │   │   │   ├── addComment.js
+    │   │   │   ├── index.js
+    │   │   ├── comment
+    │   │   │   ├── comment.js
+    │   │   │   ├── index.js
+    │   │   └── ...
+    │   ├── App.js                          # Parent Component
+    │   └── ...                             # etc.
+    └── ...
